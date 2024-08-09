@@ -25,6 +25,7 @@ jobs:
         script: |
           pwd
           ls
+          echo BOSHLANDIIIIIIIIIIIIIIIIIIIIIIIIIIi
           git clone git@github.com:IsakovDiyorbek/food.git
           cd food/Food-Delivery-Api-Gateway
           sudo docker compose down
