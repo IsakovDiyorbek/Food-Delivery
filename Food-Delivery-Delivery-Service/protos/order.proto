@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package ecommerce;
+
+option go_package = "genproto/";
+
+message Order {
+  string id = 1;
+  string user_id = 2;
+  string courier_id = 3;
+  string status = 4;
+  float total_amount = 5;
+  string delivery_address = 6;
+  string created_at = 7;
+  string updated_at = 8;
+  string deleted_at = 9;
+}
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (OrderEmpty);
+  rpc GetOrder(GetOrderRequest) returns (Order);
+  rpc UpdateOrder(UpdateOrderRequest) returns (OrderEmpty);
+  rpc ListOrders(GetAllOrdersRequest) returns (OrderList);
+  rpc DeleteOrder(DeleteOrderRequest) returns (OrderEmpty);
+}
+
+message GetOrderRequest {
+  string id = 1;
+}
+
+message CreateOrderRequest {
+  string user_id = 2;
+  string courier_id = 3;
+  string status = 4;
+  float total_amount = 5;
+  string delivery_address = 6;
+}
+
+message UpdateOrderRequest {
+  string id = 1;
+  string user_id = 2;
+  string courier_id = 3;
+  string status = 4;
+  float total_amount = 5;
+  string delivery_address = 6;
+  string deleted_at = 7;
+}
+
+message GetAllOrdersRequest {
+  string user_id = 2;
+  string courier_id = 3;
+  string status = 4;
+  float total_amount = 5;
+  string delivery_address = 6;
+}
+
+message OrderList {
+  repeated Order orders = 1;
+}
+
+message DeleteOrderRequest{
+  string id = 1;
+}
+
+message OrderEmpty {}

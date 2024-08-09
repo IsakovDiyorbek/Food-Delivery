@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package ecommerce;
+
+option go_package = "genproto/";
+
+service NotificationService {
+    rpc CreateNotification (CreateNotificationRequest) returns (NotificationEmpty);
+    rpc GetNotification (GetNotificationRequest) returns (Notification);
+    rpc MarkNotificationAsRead(MarkNotificationAsReadReq) returns (MarkNotificationAsReadResp) {}
+  }
+
+  message MarkNotificationAsReadReq{
+    string id = 1;
+    bool is_read = 2;
+}
+message MarkNotificationAsReadResp {
+    bool success = 1;
+    string message = 2;
+}
+
+
+message Notification {
+  string id = 1;
+  string user_id = 2;
+  string message = 3;
+  bool is_read = 4;
+  string created_at = 5;
+}
+
+
+
+message GetNotificationRequest {
+  string id = 1;
+}
+
+message CreateNotificationRequest {
+  string user_id = 1;
+  string message = 2;
+}
+
+
+message NotificationEmpty {}

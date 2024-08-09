@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  # API Gateway
+  gateway:
+    container_name: gateway
+    build: .
+    ports:
+      - "8088:8088"
+    networks:
+      - Mynet  
+
+  # MinIO Service
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: Dior       # Replace with your desired root user
+      MINIO_ROOT_PASSWORD: isakov05@   # Replace with your desired root password
+    command: server /data --console-address ":9001"
+    ports:
+      - "9005:9000"   # Change the host port to 9005
+      - "9001:9001"   # MinIO Console port
+    volumes:
+      - minio-data:/data
+    networks:
+      - Mynet
+
+# Docker Networks
+networks:
+  Mynet:
+    external: true
+    name: food_delivery
+    driver: bridge
+
+# Volumes
+volumes:
+  minio-data:

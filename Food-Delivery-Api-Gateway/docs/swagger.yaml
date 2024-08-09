@@ -1,0 +1,1356 @@
+basePath: /
+definitions:
+  genproto.Cart:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      options:
+        type: string
+      product:
+        $ref: '#/definitions/genproto.Product'
+      quantity:
+        type: integer
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  genproto.CourierLocation:
+    properties:
+      courier_id:
+        type: string
+      end_time:
+        type: string
+      id:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      start_time:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  genproto.CreateCartReq:
+    properties:
+      options:
+        type: string
+      product:
+        type: string
+      quantity:
+        type: integer
+      user_id:
+        type: string
+    type: object
+  genproto.CreateCourierLocationRequest:
+    properties:
+      courier_id:
+        type: string
+      end_time:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      start_time:
+        type: string
+      status:
+        type: string
+    type: object
+  genproto.CreateNotificationRequest:
+    properties:
+      message:
+        type: string
+      user_id:
+        type: string
+    type: object
+  genproto.CreateOrderItemRequest:
+    properties:
+      order_id:
+        type: string
+      price:
+        type: number
+      product_id:
+        type: string
+      quantity:
+        type: integer
+    type: object
+  genproto.CreateOrderRequest:
+    properties:
+      courier_id:
+        type: string
+      delivery_address:
+        type: string
+      status:
+        type: string
+      total_amount:
+        type: number
+      user_id:
+        type: string
+    type: object
+  genproto.CreateProductRequest:
+    properties:
+      description:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+  genproto.CreateTaskRequest:
+    properties:
+      assigned_to:
+        type: string
+      description:
+        type: string
+      due_date:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+    type: object
+  genproto.DeleteCartResp:
+    type: object
+  genproto.Empty:
+    type: object
+  genproto.MarkNotificationAsReadReq:
+    properties:
+      id:
+        type: string
+      is_read:
+        type: boolean
+    type: object
+  genproto.Notification:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      is_read:
+        type: boolean
+      message:
+        type: string
+      user_id:
+        type: string
+    type: object
+  genproto.NotificationEmpty:
+    type: object
+  genproto.Order:
+    properties:
+      courier_id:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      delivery_address:
+        type: string
+      id:
+        type: string
+      status:
+        type: string
+      total_amount:
+        type: number
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  genproto.OrderEmpty:
+    type: object
+  genproto.OrderItem:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      order_id:
+        $ref: '#/definitions/genproto.Order'
+      price:
+        type: number
+      product_id:
+        $ref: '#/definitions/genproto.Product'
+      quantity:
+        type: integer
+    type: object
+  genproto.OrderItemEmpty:
+    type: object
+  genproto.Product:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      updated_at:
+        type: string
+    type: object
+  genproto.ProductEmpty:
+    type: object
+  genproto.Task:
+    properties:
+      assigned_to:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      description:
+        type: string
+      due_date:
+        type: string
+      id:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  genproto.TaskEmpty:
+    type: object
+  genproto.UpdateCartRes:
+    type: object
+info:
+  contact: {}
+  description: API documentation for Food Delivery services
+  title: API Gateway
+  version: "1.0"
+paths:
+  /cart:
+    post:
+      consumes:
+      - application/json
+      description: Create a new cart with the provided details.
+      parameters:
+      - description: Cart details
+        in: body
+        name: cart
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateCartReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success Create Cart
+          schema:
+            type: string
+        "400":
+          description: Error message
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Create a new cart
+      tags:
+      - Cart
+  /cart/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a cart by id
+      parameters:
+      - description: Cart ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.DeleteCartResp'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Delete a cart by id
+      tags:
+      - Cart
+    get:
+      consumes:
+      - application/json
+      description: Get a cart by id
+      parameters:
+      - description: Cart ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Cart'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get a cart by id
+      tags:
+      - Cart
+    put:
+      consumes:
+      - application/json
+      description: Update a cart by id
+      parameters:
+      - description: Cart ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Cart user id
+        in: query
+        name: user_id
+        type: string
+      - description: Cart product id
+        in: query
+        name: product_id
+        type: string
+      - description: Cart options
+        in: query
+        name: options
+        type: string
+      - description: Cart quantity
+        in: query
+        name: quantity
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.UpdateCartRes'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Update a cart by id
+      tags:
+      - Cart
+  /carts:
+    get:
+      consumes:
+      - application/json
+      description: Get all carts
+      parameters:
+      - description: Cart quantity
+        in: query
+        name: quantity
+        type: integer
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Cart'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get all carts
+      tags:
+      - Cart
+  /courier_location:
+    post:
+      consumes:
+      - application/json
+      description: Create a new courier location
+      parameters:
+      - description: Courier Location
+        in: body
+        name: courier_location
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateCourierLocationRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Empty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Create a new courier location
+      tags:
+      - CourierLocation
+  /courier_location/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get a courier location by id
+      parameters:
+      - description: Courier Location ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.CourierLocation'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get a courier location by id
+      tags:
+      - CourierLocation
+    put:
+      consumes:
+      - application/json
+      description: Update a courier location by id
+      parameters:
+      - description: Courier Location ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Courier ID
+        in: query
+        name: courier_id
+        type: string
+      - description: Courier Location latitude
+        in: query
+        name: latitude
+        type: number
+      - description: Courier Location longitude
+        in: query
+        name: longitude
+        type: number
+      - description: Courier Location start time
+        in: query
+        name: start_time
+        type: string
+      - description: Courier Location end time
+        in: query
+        name: end_time
+        type: string
+      - description: Courier Location status
+        in: query
+        name: status
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Empty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Update a courier location by id
+      tags:
+      - CourierLocation
+  /courier_location{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a courier location by id
+      parameters:
+      - description: Courier Location ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Empty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Delete a courier location by id
+      tags:
+      - CourierLocation
+  /courier_locations:
+    get:
+      consumes:
+      - application/json
+      description: Get all courier locations
+      parameters:
+      - description: Courier ID
+        in: query
+        name: courier_id
+        type: string
+      - description: Courier Location start time
+        in: query
+        name: start_time
+        type: string
+      - description: Courier Location end time
+        in: query
+        name: end_time
+        type: string
+      - description: Courier Location status
+        in: query
+        name: status
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.CourierLocation'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get all courier locations
+      tags:
+      - CourierLocation
+  /minio/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload a file to MinIO
+      parameters:
+      - description: File to upload
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: Filename
+        in: formData
+        name: filename
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Upload a file to MinIO
+      tags:
+      - MinIO
+  /notification:
+    post:
+      consumes:
+      - application/json
+      description: Create a new notification
+      parameters:
+      - description: Notification
+        in: body
+        name: notification
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateNotificationRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.NotificationEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Create a new notification
+      tags:
+      - Notification
+  /notification/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get notification by id
+      parameters:
+      - description: Notification ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Notification'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get notification by id
+      tags:
+      - Notification
+  /order:
+    post:
+      consumes:
+      - application/json
+      description: Create a new order
+      parameters:
+      - description: Order
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateOrderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Create a new order
+      tags:
+      - Order
+  /order/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an order by id
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Delete an order by id
+      tags:
+      - Order
+    get:
+      consumes:
+      - application/json
+      description: Get an order by id
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Order'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get an order by id
+      tags:
+      - Order
+    put:
+      consumes:
+      - application/json
+      description: Update an order by id
+      parameters:
+      - description: Order ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Order status
+        in: query
+        name: status
+        type: string
+      - description: Order courier id
+        in: query
+        name: courier_id
+        type: string
+      - description: Order delivery address
+        in: query
+        name: delivery_address
+        type: string
+      - description: Order delivery time
+        in: query
+        name: delivery_time
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Update an order by id
+      tags:
+      - Order
+  /order_item:
+    post:
+      consumes:
+      - application/json
+      description: Create a new order item
+      parameters:
+      - description: Order Item
+        in: body
+        name: order_item
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateOrderItemRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderItemEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Create a new order item
+      tags:
+      - OrderItem
+  /order_item/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an order item by id
+      parameters:
+      - description: Order Item ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderItemEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Delete an order item by id
+      tags:
+      - OrderItem
+    get:
+      consumes:
+      - application/json
+      description: Get an order item by id
+      parameters:
+      - description: Order Item ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderItem'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get an order item by id
+      tags:
+      - OrderItem
+    put:
+      consumes:
+      - application/json
+      description: Update an order item by id
+      parameters:
+      - description: Order Item ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Order ID
+        in: query
+        name: order_id
+        type: string
+      - description: Product ID
+        in: query
+        name: product_id
+        type: string
+      - description: Order Item quantity
+        in: query
+        name: quantity
+        type: integer
+      - description: Order Item price
+        in: query
+        name: price
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderItemEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Update an order item by id
+      tags:
+      - OrderItem
+  /order_items:
+    get:
+      consumes:
+      - application/json
+      description: Get all order items
+      parameters:
+      - description: Order ID
+        in: query
+        name: order_id
+        type: string
+      - description: Product ID
+        in: query
+        name: product_id
+        type: string
+      - description: Order Item quantity
+        in: query
+        name: quantity
+        type: integer
+      - description: Order Item price
+        in: query
+        name: price
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.OrderItem'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get all order items
+      tags:
+      - OrderItem
+  /orders:
+    get:
+      consumes:
+      - application/json
+      description: Get all orders
+      parameters:
+      - description: Order user id
+        in: query
+        name: user_id
+        type: string
+      - description: Order status
+        in: query
+        name: status
+        type: string
+      - description: Order courier id
+        in: query
+        name: courier_id
+        type: string
+      - description: Order delivery address
+        in: query
+        name: delivery_address
+        type: string
+      - description: Order delivery time
+        in: query
+        name: delivery_time
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Order'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get all orders
+      tags:
+      - Order
+  /product:
+    post:
+      consumes:
+      - application/json
+      description: Create a new product
+      parameters:
+      - description: Borrower
+        in: body
+        name: borrower
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateProductRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.ProductEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Create a new product
+      tags:
+      - Product
+  /product/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a product by id
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.ProductEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Delete a product by id
+      tags:
+      - Product
+    get:
+      consumes:
+      - application/json
+      description: Get a product by id
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Product'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get a product by id
+      tags:
+      - Product
+    put:
+      consumes:
+      - application/json
+      description: Update a product by id
+      parameters:
+      - description: Product ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Product name
+        in: query
+        name: name
+        type: string
+      - description: Product image url
+        in: query
+        name: image_url
+        type: string
+      - description: Product description
+        in: query
+        name: description
+        type: string
+      - description: Product price
+        in: query
+        name: price
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.ProductEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Update a product by id
+      tags:
+      - Product
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: Get all products
+      parameters:
+      - description: Product name
+        in: query
+        name: name
+        type: string
+      - description: Product image url
+        in: query
+        name: image_url
+        type: string
+      - description: Product description
+        in: query
+        name: description
+        type: string
+      - description: Product price
+        in: query
+        name: price
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Product'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get all products
+      tags:
+      - Product
+  /read:
+    put:
+      consumes:
+      - application/json
+      description: This API marks a notification as read
+      parameters:
+      - description: Notification
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.MarkNotificationAsReadReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'message": "updated successfully'
+          schema:
+            type: string
+        "400":
+          description: 'error": "error message'
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: MARK notification as read
+      tags:
+      - Notification
+  /task:
+    post:
+      consumes:
+      - application/json
+      description: Create a new task
+      parameters:
+      - description: Task
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/genproto.CreateTaskRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.TaskEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Create a new task
+      tags:
+      - Task
+  /task/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get a task by id
+      parameters:
+      - description: Task ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Task'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get a task by id
+      tags:
+      - Task
+    put:
+      consumes:
+      - application/json
+      description: Update a task by id
+      parameters:
+      - description: Task ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Task title
+        in: query
+        name: title
+        type: string
+      - description: Task description
+        in: query
+        name: description
+        type: string
+      - description: Task assigned to
+        in: query
+        name: user_id_assigned_to
+        type: string
+      - description: Task status
+        in: query
+        name: status
+        type: string
+      - description: Task due date
+        in: query
+        name: due_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.TaskEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Update a task by id
+      tags:
+      - Task
+  /task{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a task by id
+      parameters:
+      - description: Task ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.TaskEmpty'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Delete a task by id
+      tags:
+      - Task
+  /tasks:
+    get:
+      consumes:
+      - application/json
+      description: Get all tasks
+      parameters:
+      - description: Task title
+        in: query
+        name: title
+        type: string
+      - description: Task description
+        in: query
+        name: description
+        type: string
+      - description: Task assigned to
+        in: query
+        name: assigned_to
+        type: string
+      - description: Task status
+        in: query
+        name: status
+        type: string
+      - description: Task due date
+        in: query
+        name: due_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/genproto.Task'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: Get all tasks
+      tags:
+      - Task
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package ecommerce;
+
+option go_package = "genproto/";
+
+message Task {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string status = 4;
+  string assigned_to = 5;
+  string user_id = 6;
+  string due_date = 7;
+  string created_at = 8;
+  string updated_at = 9;
+  string deleted_at = 10;
+}
+
+service TaskService {
+  rpc CreateTask (CreateTaskRequest) returns (TaskEmpty);
+  rpc GetTask (GetTaskRequest) returns (Task);
+  rpc UpdateTask (UpdateTaskRequest) returns (TaskEmpty);
+  rpc DeleteTask (DeleteTaskRequest) returns (TaskEmpty);
+  rpc ListTasks (GetAllTasksRequest) returns (TaskList);
+}
+
+message GetTaskRequest {
+  string id = 1;
+}
+
+message CreateTaskRequest {
+  string title = 2;
+  string description = 3;
+  string status = 4;
+  string assigned_to = 5;
+  string due_date = 6;
+}
+
+message UpdateTaskRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string status = 4;
+  string assigned_to = 5;
+  string due_date = 6;
+}
+
+message DeleteTaskRequest {
+  string id = 1;
+}
+
+message GetAllTasksRequest {
+  string title = 2;
+  string description = 3;
+  string status = 4;
+  string assigned_to = 5;
+  string due_date = 6;
+  int32 limit = 7;
+  int32 offset = 8;
+}
+
+message TaskList {
+  repeated Task tasks = 1;
+}
+
+message TaskEmpty {}

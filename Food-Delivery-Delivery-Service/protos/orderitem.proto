@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package ecommerce;
+
+
+option go_package = "genproto/";
+
+import "order.proto";
+import "product.proto";
+
+message OrderItem {
+  string id = 1;
+  Order order_id = 2;
+  Product product_id = 3;
+  int32 quantity = 4;
+  float price = 5;
+  string created_at = 6;
+}
+
+service OrderItemService {
+  rpc CreateOrderItem (CreateOrderItemRequest) returns (OrderItemEmpty);
+  rpc GetOrderItem (GetOrderItemRequest) returns (OrderItem);
+  rpc UpdateOrderItem (UpdateOrderItemRequest) returns (OrderItemEmpty);
+  rpc DeleteOrderItem (DeleteOrderItemRequest) returns (OrderItemEmpty);
+  rpc ListOrderItems (GetAllOrderItemsRequest) returns (OrderItemList);
+}
+
+message GetOrderItemRequest {
+  string id = 1;
+}
+
+message CreateOrderItemRequest {
+  string order_id = 2;
+  string product_id = 3;
+  int32 quantity = 4;
+  float price = 5;
+}
+
+message UpdateOrderItemRequest {
+  string id = 1;
+  string order_id = 2;
+  string product_id = 3;
+  int32 quantity = 4;
+  float price = 5;
+}
+
+message DeleteOrderItemRequest {
+  string id = 1;
+}
+
+message GetAllOrderItemsRequest {
+  string order_id = 2;
+  string product_id = 3;
+  int32 quantity = 4;
+  float price = 5;
+  int32 limit = 6;
+  int32 ofset = 7;
+}
+
+message OrderItemList {
+  repeated OrderItem order_items = 1;
+}
+
+message OrderItemEmpty {}

@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package ecommerce;
+
+
+option go_package = "genproto/";
+
+message CourierLocation {
+  string id = 1;
+  string courier_id = 2;
+  float latitude = 3;
+  float longitude = 4;
+  string updated_at = 5;
+  string start_time = 6;
+  string end_time = 7;
+  string status = 8;
+
+}
+
+service CourierLocationService {
+  rpc CreateCourierLocation (CreateCourierLocationRequest) returns (Empty);
+  rpc GetCourierLocation (GetCourierLocationRequest) returns (CourierLocation);
+  rpc UpdateCourierLocation (UpdateCourierLocationRequest) returns (Empty);
+  rpc DeleteCourierLocation (DeleteCourierLocationRequest) returns (Empty);
+  rpc ListCourierLocations (GetAllCourierLocationsRequest) returns (CourierLocationList);
+}
+
+message GetCourierLocationRequest {
+  string id = 1;
+}
+
+message CreateCourierLocationRequest {
+  string courier_id = 2;
+  float latitude = 3;
+  float longitude = 4;
+  string start_time = 5;
+  string end_time = 6;
+  string status = 7;
+}
+
+message UpdateCourierLocationRequest {
+  string id = 1;
+  string courier_id = 2;
+  float latitude = 3;
+  float longitude = 4;
+  string start_time = 5;
+  string end_time = 6;
+  string status = 7;
+}
+
+message DeleteCourierLocationRequest {
+  string id = 1;
+}
+
+message GetAllCourierLocationsRequest {
+  string courier_id = 1;
+  float latitude = 2;
+  float longitude = 3;
+  string start_time = 4;
+  string end_time = 5;
+  string status = 6;
+  int32 limit = 7;
+  int32 offset = 8;
+}
+
+message CourierLocationList {
+  repeated CourierLocation courier_locations = 1;
+}
+
+message Empty {}

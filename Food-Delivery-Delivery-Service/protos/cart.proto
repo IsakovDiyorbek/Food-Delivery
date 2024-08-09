@@ -1,0 +1,80 @@
+syntax="proto3";
+
+option go_package = "genproto/";
+
+package ecommerce;
+
+
+import "product.proto";
+
+
+service CartService{
+    rpc CreateCart(CreateCartReq) returns (CartEmpty) {}
+    rpc GetCart(GetByIdCartRequest) returns (Cart) {}
+    rpc GetAllCarts(GetAllCartsReq) returns (GetAllCartsRes) {}
+    rpc UpdateCart(UpdateCartReq) returns (UpdateCartRes) {}
+    rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResp) {}
+    rpc SearchCarts(SearchCartsReq) returns (SearchCartsRes) {}
+}
+
+message GetByIdCartRequest{
+    string id = 1;
+}
+
+message DeleteCartRequest{
+    string id = 1;
+}
+
+
+message CreateCartReq{
+    string user_id = 1;
+    string product = 2;
+    int32 quantity = 3;
+    string options = 4; 
+}
+
+message Cart{
+    string id = 1;
+    string user_id = 2;
+    Product product = 3;
+    int32 quantity = 4;
+    string options = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+
+message GetAllCartsReq{
+    int32 quantity = 1;
+    int32 limit = 2;
+    int32 offset = 3;   
+}
+
+message GetAllCartsRes{
+    repeated Cart carts = 1;
+}
+message UpdateCartReq{
+    string id = 1;
+    string user_id = 2;
+    string product = 3;
+    int32 quantity = 4;
+    string options = 5;
+}
+message UpdateCartRes{}
+
+message DeleteCartResp{}
+
+
+message SearchCartsReq {
+    string user_id = 1;
+    string product = 2;
+    int32 quantity = 3;
+    string options = 4;
+}
+
+message SearchCartsRes {
+    repeated Cart carts = 1;
+}
+
+
+message CartEmpty{}
+

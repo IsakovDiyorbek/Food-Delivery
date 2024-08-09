@@ -1,0 +1,54 @@
+version: '3.9'
+
+services: 
+  migrate:
+    image: migrate/migrate
+    networks:
+      - GLhost
+    volumes:
+      - ./migrations:/migrations
+    command: [ "-path", "/migrations", "-database",  
+                "postgres://postgres:20005@delivery:5432/food?sslmode=disable", 
+                "up" ]
+    depends_on:
+      - postgres-db2    
+
+  postgres-db2:
+    container_name: delivery #post
+    image: postgres:latest
+    environment:
+      PGUSER: postgres
+      POSTGRES_PASSWORD: 20005
+      PGDATA: /data/postgres
+      POSTGRES_DB: food 
+    volumes:
+      - db:/memory-database/memory-memory
+    ports:
+      - "5431:5432"
+    networks:
+      - GLhost
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5   
+
+  delivery_service:
+    container_name: delivery_service
+    build: .
+    depends_on:
+      - postgres-db2
+    ports:
+      - "9000:9000"
+    networks:
+      - GLhost     
+
+networks:
+  GLhost:
+    external: true
+    name: food_delivery
+    driver: bridge      
+
+volumes:
+  db: 

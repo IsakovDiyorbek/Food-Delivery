@@ -1,0 +1,48 @@
+# Food Service
+p, admin, /cart, POST
+p, admin, /cart/:id, PUT
+p, admin, /cart/:id, DELETE
+p, user, /cart/:id, GET
+p, admin, /carts, GET
+p, admin, /cart/:id, GET
+
+p, admin, /order, POST
+p, user, /order/:id, GET
+p, admin, /order/:id, PUT
+p, user, /orders, GET
+p, courier, /orders, GET
+p, admin, /orders, GET
+p, admin, /order/history, GET
+p, admin, /order/:id, DELETE
+
+p, admin, /order_item, POST
+p, user, /order_item/:id, GET
+p, user, /order_items, GET
+p, admin, /order_item/:id, PUT
+p, admin, /order_item/:id, DELETE
+
+p, admin, /notification, POST
+p, user, /notification/:id, GET
+p, admin, /notification/read, PUT
+
+p, admin, /task, POST
+p, user, /task/:id, GET
+p, user, /tasks, GET
+p, admin, /tasks, GET
+p, admin, /task/:id, PUT
+p, admin, /task/:id, DELETE
+
+p, admin, /courier_location, POST
+p, user, /courier_location/:id, GET
+p, user, /courier_locations, GET
+p, admin, /courier_location/:id, PUT
+p, admin, /courier_location/:id, DELETE
+
+p, admin, /product, POST
+p, user, /product/:id, GET
+p, user, /products, GET
+p, admin, /product/:id, PUT
+p, user, /product/:id, DELETE
+
+p, user, /minio/upload, POST
+p, user, /minio/:bucket/:object, GET
