@@ -25,19 +25,21 @@ jobs:
         script: |
           pwd
           echo BOSHLANDIIIIIIIIIIIIIIIIIIIIIIIIIIi
-          git clone git@github.com:IsakovDiyorbek/food.git
-          cd food/Food-Delivery-Api-Gateway
-          sudo docker compose down
-          sudo docker compose up -d 
+          cd food
+          git pull origin main
 
-          sudo docker compose up -d
+          cd Food-Delivery-Api-Gateway
+          sudo docker compose down
+          sudo docker compose up -d --build
+          sudo docker compose down
+          sudo docker compose up -d --build
 
           cd ..
           cd Food-Delivery-Auth-Service
           sudo docker compose down
-          sudo docker compose up -d
+          sudo docker compose up -d --build
 
           cd ..
           cd Food-Delivery-Delivery-Service
           sudo docker compose down
-          sudo docker compose up -d
+          sudo docker compose up -d --build
