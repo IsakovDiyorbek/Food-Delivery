@@ -1,7 +1,7 @@
 package handler
 
 import (
-	pb "github.com/Food_Delivery/Food-Delivery-Api-Gateway/genproto"
+	pb "github.com/Food-Delivery/Food-Delivery-Api-Gateway/genproto"
 	"github.com/gin-gonic/gin"
 )
 
@@ -113,7 +113,6 @@ func (h *Handler) GetAllTasks(c *gin.Context) {
 	}
 	c.JSON(200, res)
 }
-
 
 // @Summary Delete a task by id
 // @Description Delete a task by id

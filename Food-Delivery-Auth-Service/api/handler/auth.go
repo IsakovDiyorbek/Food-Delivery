@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"time"
 
-	_ "github.com/Food_Delivery/Food-Delivery-Auth-Service/docs"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/user"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/api/token"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/auth"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/api/token"
+	_ "github.com/Food-Delivery/Food-Delivery-Auth-Service/docs"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/auth"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/user"
 
 	"github.com/gin-gonic/gin"
 )

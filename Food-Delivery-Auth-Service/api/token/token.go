@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/config"
-	pb "github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/auth"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/config"
+	pb "github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/auth"
 	"github.com/golang-jwt/jwt"
 	"github.com/spf13/cast"
 	"golang.org/x/crypto/bcrypt"

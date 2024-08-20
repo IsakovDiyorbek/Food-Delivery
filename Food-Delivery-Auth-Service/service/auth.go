@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/auth"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/storage"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/auth"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/storage"
 )
 
 type AuthService struct {

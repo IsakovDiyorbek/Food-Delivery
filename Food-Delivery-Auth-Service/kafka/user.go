@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/user"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/service"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/user"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/service"
 )
 
 func Change(User *service.UserService) func(message []byte) {

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Food_Delivery/Food-Delivery-Api-Gateway/api"
-	_ "github.com/Food_Delivery/Food-Delivery-Api-Gateway/docs"
-	minio "github.com/Food_Delivery/Food-Delivery-Api-Gateway/minIO"
+	"github.com/Food-Delivery/Food-Delivery-Api-Gateway/api"
+	_ "github.com/Food-Delivery/Food-Delivery-Api-Gateway/docs"
+	minio "github.com/Food-Delivery/Food-Delivery-Api-Gateway/minIO"
 	"github.com/casbin/casbin/v2"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

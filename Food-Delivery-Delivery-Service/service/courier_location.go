@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/Food/Food-Delivery-Delivery-Service/genproto"
-	"github.com/Food/Food-Delivery-Delivery-Service/storage"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/genproto"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/storage"
 )
 
 type CourierLocationService struct {
@@ -24,7 +24,7 @@ func (c *CourierLocationService) GetCourierLocation(ctx context.Context, req *ge
 	return c.storage.CourierLocation().GetCourierLocation(req)
 }
 
-func (c *CourierLocationService) UpdateCourierLocation(ctx context.Context,  req *genproto.UpdateCourierLocationRequest) (*genproto.Empty, error) {
+func (c *CourierLocationService) UpdateCourierLocation(ctx context.Context, req *genproto.UpdateCourierLocationRequest) (*genproto.Empty, error) {
 	return c.storage.CourierLocation().UpdateCourierLocation(req)
 }
 

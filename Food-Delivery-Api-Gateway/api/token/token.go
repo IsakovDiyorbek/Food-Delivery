@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Food_Delivery/Food-Delivery-Api-Gateway/config"
+	"github.com/Food-Delivery/Food-Delivery-Api-Gateway/config"
 	"github.com/golang-jwt/jwt"
 	"github.com/spf13/cast"
 	"golang.org/x/crypto/bcrypt"
@@ -53,7 +53,7 @@ func ExtractClaim(tokenStr string) (jwt.MapClaims, error) {
 }
 
 // ExtractClaims ...
-func  ExtractClaims(jwttoken string) (jwt.MapClaims, error) {
+func ExtractClaims(jwttoken string) (jwt.MapClaims, error) {
 	token, err := jwt.Parse(jwttoken, func(t *jwt.Token) (interface{}, error) {
 		return []byte(config.Load().TokenKey), nil
 	})

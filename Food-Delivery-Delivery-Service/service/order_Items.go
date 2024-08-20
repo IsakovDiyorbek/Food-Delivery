@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/Food/Food-Delivery-Delivery-Service/genproto"
-	"github.com/Food/Food-Delivery-Delivery-Service/storage"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/genproto"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/storage"
 )
 
 type OrderItemsService struct {

@@ -3,8 +3,8 @@ package storage
 import (
 	"context"
 
-	pb "github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/auth"
-	pu "github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/user"
+	pb "github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/auth"
+	pu "github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/user"
 )
 
 type StorageI interface {
@@ -24,6 +24,4 @@ type User interface {
 	UpdateProfile(ctx context.Context, req *pu.UpdateProfileRequest) (*pu.UpdateProfileResponse, error)
 	ChangePassword(ctx context.Context, req *pu.ChangePasswordRequest) (*pu.ChangePasswordResponse, error)
 	GetAllUsers(ctx context.Context, req *pu.GetAllUsersRequest) (*pu.GetAllUsersResponse, error)
-
-
 }

@@ -5,10 +5,10 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/Food/Food-Delivery-Delivery-Service/config"
-	"github.com/Food/Food-Delivery-Delivery-Service/genproto"
-	"github.com/Food/Food-Delivery-Delivery-Service/service"
-	"github.com/Food/Food-Delivery-Delivery-Service/storage/postgres"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/config"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/genproto"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/service"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/storage/postgres"
 	"github.com/gorilla/websocket"
 	"google.golang.org/grpc"
 )
@@ -61,7 +61,6 @@ func main() {
 	genproto.RegisterTaskServiceServer(s, service.NewTaskService(db))
 	genproto.RegisterCourierLocationServiceServer(s, service.NewCourierLocationService(db))
 	genproto.RegisterNotificationServiceServer(s, service.NewNotificationService(db))
-
 
 	http.HandleFunc("/ws", websocketHandler)
 	go func() {

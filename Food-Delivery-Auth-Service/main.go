@@ -6,15 +6,15 @@ import (
 	"log/slog"
 	"net"
 
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/api"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/api/handler"
-	pr "github.com/Food_Delivery/Food-Delivery-Auth-Service/api/kafka"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/auth"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/user"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/service"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/storage/postgres"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/api"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/api/handler"
+	pr "github.com/Food-Delivery/Food-Delivery-Auth-Service/api/kafka"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/auth"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/user"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/service"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/storage/postgres"
 
-	consumer "github.com/Food_Delivery/Food-Delivery-Auth-Service/kafka"
+	consumer "github.com/Food-Delivery/Food-Delivery-Auth-Service/kafka"
 
 	"github.com/go-redis/redis/v8"
 	"google.golang.org/grpc"
@@ -63,7 +63,7 @@ func main() {
 	}
 
 	log.Printf("server listening at %v", liss.Addr())
-	
+
 	go func() {
 		if err := s.Serve(liss); err != nil {
 			log.Fatalf("failed to serve: %v", err)
@@ -83,7 +83,6 @@ func main() {
 	if err != nil {
 		slog.Info("error:", err)
 	}
-
 
 	h := handler.Handler{Auth: auth, User: userService, Redis: redisDb, Kafka: kafkaProducer}
 

@@ -3,7 +3,7 @@ package handler
 import (
 	"strconv"
 
-	pb "github.com/Food_Delivery/Food-Delivery-Api-Gateway/genproto"
+	pb "github.com/Food-Delivery/Food-Delivery-Api-Gateway/genproto"
 	"github.com/gin-gonic/gin"
 )
 
@@ -84,7 +84,6 @@ func (h *Handler) UpdateProduct(c *gin.Context) {
 		product.Price = float32(price)
 	}
 
-
 	_, err := h.Product.UpdateProduct(c, &product)
 	if err != nil {
 		c.JSON(400, err.Error())
@@ -92,7 +91,6 @@ func (h *Handler) UpdateProduct(c *gin.Context) {
 	}
 	c.JSON(200, "Success Update Product")
 }
-
 
 // @Summary Delete a product by id
 // @Description Delete a product by id

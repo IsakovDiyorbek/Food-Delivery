@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	pb "github.com/Food_Delivery/Food-Delivery-Api-Gateway/genproto"
-	"github.com/Food_Delivery/Food-Delivery-Api-Gateway/genproto/user"
+	pb "github.com/Food-Delivery/Food-Delivery-Api-Gateway/genproto"
+	"github.com/Food-Delivery/Food-Delivery-Api-Gateway/genproto/user"
 	"github.com/gin-gonic/gin"
 )
 

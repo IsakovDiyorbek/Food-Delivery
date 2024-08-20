@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/Food_Delivery/Food-Delivery-Api-Gateway/genproto"
-	"github.com/Food_Delivery/Food-Delivery-Api-Gateway/genproto/user"
+	"github.com/Food-Delivery/Food-Delivery-Api-Gateway/genproto"
+	"github.com/Food-Delivery/Food-Delivery-Api-Gateway/genproto/user"
 	"github.com/casbin/casbin/v2"
 	"github.com/minio/minio-go/v7"
 	"google.golang.org/grpc"

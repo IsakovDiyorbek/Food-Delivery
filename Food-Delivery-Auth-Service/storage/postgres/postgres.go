@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/config"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/storage"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/config"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/storage"
 	"github.com/go-redis/redis/v8"
 
 	_ "github.com/lib/pq"

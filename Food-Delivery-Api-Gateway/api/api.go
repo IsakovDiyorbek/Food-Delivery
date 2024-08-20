@@ -1,8 +1,8 @@
 package api
 
 import (
-	"github.com/Food_Delivery/Food-Delivery-Api-Gateway/api/handler"
-	"github.com/Food_Delivery/Food-Delivery-Api-Gateway/api/middleware"
+	"github.com/Food-Delivery/Food-Delivery-Api-Gateway/api/handler"
+	"github.com/Food-Delivery/Food-Delivery-Api-Gateway/api/middleware"
 	"github.com/casbin/casbin/v2"
 	"github.com/gin-gonic/gin"
 	"github.com/minio/minio-go/v7"

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/user"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/user"
 	"github.com/gin-gonic/gin"
 )
 
@@ -91,9 +91,6 @@ func (h *Handler) ChangePassword(c *gin.Context) {
 	c.JSON(http.StatusOK, "Success")
 }
 
-
-
-
 // @Summary Get all users
 // @Description Retrieves all users
 // @Tags User
@@ -102,7 +99,7 @@ func (h *Handler) ChangePassword(c *gin.Context) {
 // @Success 200 {object} user.GetAllUsersResponse
 // @Failure 400 {object} string "Invalid request payload"
 // @Router /user/all [get]
-func (h *Handler) GetAllUsers(c *gin.Context){
+func (h *Handler) GetAllUsers(c *gin.Context) {
 	req := &user.GetAllUsersRequest{}
 	res, err := h.User.GetAllUsers(c, req)
 	if err != nil {

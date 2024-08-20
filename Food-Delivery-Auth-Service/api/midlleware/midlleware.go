@@ -7,8 +7,8 @@ import (
 
 	"log"
 
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/api/token"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/config"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/api/token"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/config"
 	"github.com/casbin/casbin/v2"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
@@ -89,7 +89,7 @@ func MiddleWare() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		t := ctx.GetHeader("Authorization")
 		url := ctx.Request.URL.Path
-		if strings.Contains(url, "swagger") || url == "/auth/login" || url == "/auth/register" || url == "/user/all"{
+		if strings.Contains(url, "swagger") || url == "/auth/login" || url == "/auth/register" || url == "/user/all" {
 			ctx.Next()
 			return
 		} else if _, err := token.ExtractClaim(t); err != nil {

@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 
-	pb "github.com/Food/Food-Delivery-Delivery-Service/genproto"
+	pb "github.com/Food-Delivery/Food-Delivery-Delivery-Service/genproto"
 	"github.com/google/uuid"
 )
 

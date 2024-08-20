@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/api/kafka"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/auth"
-	"github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/user"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/api/kafka"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/auth"
+	"github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/user"
 	"github.com/go-redis/redis/v8"
 )
 

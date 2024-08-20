@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	pb "github.com/Food/Food-Delivery-Delivery-Service/genproto"
-	"github.com/Food/Food-Delivery-Delivery-Service/helper"
+	pb "github.com/Food-Delivery/Food-Delivery-Delivery-Service/genproto"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/helper"
 
 	"github.com/google/uuid"
 )

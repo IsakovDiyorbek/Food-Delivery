@@ -1,7 +1,7 @@
 package storage
 
 import (
-	pb "github.com/Food/Food-Delivery-Delivery-Service/genproto"
+	pb "github.com/Food-Delivery/Food-Delivery-Delivery-Service/genproto"
 )
 
 type StorageI interface {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	pb "github.com/Food_Delivery/Food-Delivery-Api-Gateway/genproto"
+	pb "github.com/Food-Delivery/Food-Delivery-Api-Gateway/genproto"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,7 +28,6 @@ func (h *Handler) CreateOrderItem(c *gin.Context) {
 	fmt.Println(req.OrderId, req.ProductId, req.Quantity, req.Price)
 	_, err = h.OrderItems.CreateOrderItem(c, &req)
 
-
 	if err != nil {
 		c.JSON(400, err.Error())
 		return
@@ -39,7 +38,6 @@ func (h *Handler) CreateOrderItem(c *gin.Context) {
 		c.JSON(400, err.Error())
 		return
 	}
-
 
 	c.JSON(200, "Success Create OrderItem")
 }
@@ -122,11 +120,11 @@ func (h *Handler) GetAllOrderItems(c *gin.Context) {
 	orderItem := pb.GetAllOrderItemsRequest{}
 	orderItem.OrderId = c.Query("order_id")
 	orderItem.ProductId = c.Query("product_id")
-	
+
 	quantityStr := c.Query("quantity")
 	quantity, _ := strconv.Atoi(quantityStr)
 	orderItem.Quantity = int32(quantity)
-	
+
 	priceStr := c.Query("price")
 	if priceStr != "" {
 		price, err := strconv.ParseFloat(priceStr, 64)

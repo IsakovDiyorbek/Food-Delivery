@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Food_Delivery/Food-Delivery-Api-Gateway/api/token"
+	"github.com/Food-Delivery/Food-Delivery-Api-Gateway/api/token"
 	"github.com/casbin/casbin/v2"
 	"github.com/gin-gonic/gin"
 )
@@ -26,7 +26,7 @@ func MiddleWare() gin.HandlerFunc {
 
 		} else if _, err := token.ExtractClaim(t); err != nil {
 			ctx.AbortWithStatusJSON(http.StatusForbidden, gin.H{
-		 
+
 				"error": err.Error(),
 			})
 
@@ -48,7 +48,7 @@ func CasbinMiddleware(enforcer *casbin.Enforcer) gin.HandlerFunc {
 		// }
 		claims, _ := token.ExtractClaim(c.Request.Header.Get("Authorization"))
 		sub := claims["role"].(string)
-		fmt.Println("role:",sub)
+		fmt.Println("role:", sub)
 		obj := c.Request.URL.Path
 		act := c.Request.Method
 

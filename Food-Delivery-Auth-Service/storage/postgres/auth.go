@@ -8,7 +8,7 @@ import (
 	"log/slog"
 	"time"
 
-	pb "github.com/Food_Delivery/Food-Delivery-Auth-Service/genproto/auth"
+	pb "github.com/Food-Delivery/Food-Delivery-Auth-Service/genproto/auth"
 	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 )

@@ -7,7 +7,8 @@ import (
 	"strings"
 	"time"
 
-	pb "github.com/Food/Food-Delivery-Delivery-Service/genproto"
+	pb "github.com/Food-Delivery/Food-Delivery-Delivery-Service/genproto"
+
 	"github.com/google/uuid"
 )
 
@@ -63,7 +64,6 @@ func (t *TasksRepo) GetTask(req *pb.GetTaskRequest) (*pb.Task, error) {
 	}
 	return &task, nil
 }
-
 
 func (t *TasksRepo) UpdateTask(req *pb.UpdateTaskRequest) (*pb.TaskEmpty, error) {
 	var args []interface{}

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Food/Food-Delivery-Delivery-Service/config"
-	"github.com/Food/Food-Delivery-Delivery-Service/storage"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/config"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/storage"
 	_ "github.com/lib/pq"
 )
 

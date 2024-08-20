@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/Food/Food-Delivery-Delivery-Service/genproto"
-	"github.com/Food/Food-Delivery-Delivery-Service/storage"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/genproto"
+	"github.com/Food-Delivery/Food-Delivery-Delivery-Service/storage"
 )
 
 type CartService struct {
@@ -35,4 +35,3 @@ func (c *CartService) UpdateCart(ctx context.Context, req *genproto.UpdateCartRe
 func (c *CartService) DeleteCart(ctx context.Context, req *genproto.DeleteCartRequest) (*genproto.DeleteCartResp, error) {
 	return c.storage.Cart().DeleteCart(req)
 }
-
